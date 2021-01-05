@@ -6,11 +6,11 @@ const app = new Koa();
 const router = new Router();
 
 router.get('/', async ctx => {
-    ctx.body = {sccess: 'get ok'};
+    ctx.body = {result: 'get ok'};
 });
 
 router.post('/', async ctx => {
-    ctx.body = {sccess: 'post ok'};
+    ctx.body = {result: 'post ok'};
 });
 
 app.use(router.routes());
