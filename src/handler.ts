@@ -1,7 +1,7 @@
-const Router = require('koa-router');
-const Koa = require('koa');
-const QueryString = require('querystring');
-const { DoubleIncomingMessage, DoubleOutgoingMessage } = require('./double');
+import * as Router from 'koa-router';
+import * as Koa from 'koa';
+import * as QueryString from 'querystring';
+import { DoubleIncomingMessage, DoubleOutgoingMessage } from './double';
 
 const app = new Koa();
 const router = new Router();
@@ -17,7 +17,7 @@ router.post('/', async ctx => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-exports.handler = async (event, context) => {
+export async function handler(event: any, context: any) {
     const callback = app.callback();
     const queryString = QueryString.stringify(event.queryStringParameters);
     const url = `https://localhost${event.path}?${queryString}`;
@@ -29,7 +29,7 @@ exports.handler = async (event, context) => {
     };
     const req = new DoubleIncomingMessage(options);
     const res = new DoubleOutgoingMessage(req);
-    const ret = await callback(req, res);
+    await callback(req as any, res as any); // FIXME
     return {
         statusCode: res.statusCode,
         headers: res.getHeaders(),
@@ -37,4 +37,4 @@ exports.handler = async (event, context) => {
     }
 }
 
-exports.app = app;
+export { app }

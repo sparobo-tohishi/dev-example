@@ -1,5 +1,6 @@
-const { handler } = require('./handler');
-const [ , , method, path ] = process.argv;
+import { handler } from './handler';
+
+const [, , method, path] = process.argv;
 const event = {
     httpMethod: method.toUpperCase(),
     path: path,
