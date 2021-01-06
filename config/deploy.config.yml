@@ -1,0 +1,25 @@
+profiles:
+  dev:
+    region: ap-northeast-1
+    acces_key_id: DEV_ACCESS_KEY_ID
+    secret_acces_key: DEV_SECRET_ACCESS_KEY
+  stg:
+    region: ap-northeast-1
+    acces_key_id: STG_ACCESS_KEY_ID
+    secret_acces_key: STG_SECRET_ACCESS_KEY
+  prd:
+    region: ap-northeast-1
+    acces_key_id: STG_ACCESS_KEY_ID
+    secret_acces_key: STG_SECRET_ACCESS_KEY
+targets:
+  all:
+      layers: &all_layers
+          layer1: src/layers/layer1
+          layer2: src/layers/layer2
+      functions: &all_functions
+          function1: src/lambda/function1
+          function2: src/lambda/function2
+  layer:
+      layers: *all_layers
+  function:
+      functions: *all_functions
